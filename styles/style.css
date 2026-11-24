@@ -1,32 +1,80 @@
 /* =========================================
-   ШАПКА (HEADER)
+   1. БАЗОВЫЕ НАСТРОЙКИ И СБРОС
+   ========================================= */
+html {
+    scroll-behavior: smooth;
+    background-color: #fff;
+}
+
+/* Кастомный стильный скроллбар */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Красивое выделение текста мышкой */
+::selection {
+    background: #000;
+    color: #fff;
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+    margin: 0 auto;
+    padding: 0;
+    color: #000;
+    background-color: #fff;
+    width: 100%;
+    max-width: 1100px;
+    min-width: 1100px;
+    overflow-x: hidden;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.bet-button:focus {
+    outline: none;
+}
+
+/* =========================================
+   2. ШАПКА (HEADER)
    ========================================= */
 .header {
     display: grid;
-    /* 3 колонки: меню, логотип по центру, адрес */
     grid-template-columns: 1fr min-content 1fr;
-    align-items: center; /* выравнивание по вертикали */
-    padding: 92px 50px 96px; /* отступы (сверху, по бокам, снизу) */
+    align-items: center;
+    padding: 30px 0;
 }
 
 .header__menu {
     justify-self: start;
+    padding-left: 0;
 }
 
 .header__links-list {
     display: flex;
     gap: 32px;
-    list-style: circle; /* маркеры в виде кружочков */
+    list-style: circle;
     margin: 0;
     padding: 0;
-    padding-left: 20px; /* чтобы кружочки не обрезались */
+    padding-left: 20px;
 }
 
 .header__links-list-item {
     padding-left: 5px;
 }
 
-/* Убираем кружочек у первого пункта меню */
 .header__links-list-item_no-bullit {
     list-style: none;
     padding-left: 0;
@@ -36,6 +84,12 @@
     text-decoration: underline;
     font-size: 18px;
     color: #000;
+    text-underline-offset: 4px;
+    transition: color 0.2s;
+}
+
+.header__link:hover {
+    color: #666;
 }
 
 .header__link_active {
@@ -44,31 +98,43 @@
 
 .header__logo {
     display: block;
+    margin: 0 auto;
+    transition: transform 0.3s ease; /* Логотип тоже будет реагировать */
+}
+
+.header__logo:hover {
+    transform: scale(1.05);
 }
 
 .header__logo-image {
-    width: 138px; /* размер логотипа из макета */
-    height: auto;
+    width: 138px;
+    display: block;
 }
 
 .header__address {
     justify-self: end;
+    text-align: left;
     max-width: 240px;
 }
 
-/* Общие стили для адреса (в шапке и подвале) */
 .address {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     font-style: normal;
     font-size: 18px;
-    line-height: 1.4;
+    line-height: 1.3;
 }
 
 .address a {
     color: #000;
     text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: color 0.2s;
+}
+
+.address a:hover {
+    color: #666;
 }
 
 .address p {
@@ -77,72 +143,95 @@
 }
 
 /* =========================================
-   ОБЛОЖКА (COVER)
+   3. ОБЛОЖКА (COVER)
    ========================================= */
 .cover {
-    position: relative; /* чтобы оверлей позиционировался внутри */
-    background-image: url('./images/cover.jpg'); /* ФОН ОБЛОЖКИ! Проверь имя */
+    position: relative;
+    background-image: url('../images/cover.jpg');
     background-size: cover;
     background-position: center;
-    min-height: 757px; /* минимальная высота из макета */
-    padding: 165px 50px 50px;
+    height: 757px;
+    padding: 165px 0 50px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    overflow: hidden; /* Чтобы анимация не вылезала за края */
 }
 
-/* Оверлей (полупрозрачный слой поверх фона) */
 .overlay {
     position: absolute;
-    inset: 0; /* растягиваем на весь родительский блок */
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1; /* отправляем на задний план */
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1;
 }
 
-/* Заголовок на обложке */
 .cover__title {
-    position: relative; /* поднимаем над оверлеем */
+    position: relative;
     z-index: 2;
     margin: 0;
     display: flex;
     flex-direction: column;
     font-size: 100px;
+    font-weight: bold;
     text-transform: uppercase;
-    line-height: 1.1;
+    line-height: 0.95;
     letter-spacing: 0.3em;
     color: #fff;
+    /* Анимация появления */
+    animation: slideUpFade 1s ease-out forwards;
+}
+
+/* Ключевые кадры для анимации заголовка */
+@keyframes slideUpFade {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .aligned-text_left {
+    display: block;
     text-align: left;
+    padding-left: 50px;
 }
 
 .aligned-text_center {
+    display: block;
     text-align: center;
+    padding-left: 120px;
 }
 
 .aligned-text_right {
+    display: block;
     text-align: right;
+    padding-right: 50px;
 }
 
-/* Блок с описанием и кнопкой */
 .cover__description {
     position: relative;
     z-index: 2;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
+    padding: 0 50px;
 }
 
 .cover__description-text {
     margin: 0;
     font-size: 22px;
-    word-spacing: 18px; /* нестандартное расстояние между словами */
     text-transform: uppercase;
+    word-spacing: 20px;
     color: #fff;
 }
 
+/* Кнопка (с плавной заливкой) */
 .bet-button {
+    display: inline-block;
     background-color: transparent;
     border: 1px solid #fff;
     color: #fff;
@@ -151,10 +240,39 @@
     text-transform: uppercase;
     cursor: pointer;
     font-family: inherit;
+    text-decoration: none;
+    transition: all 0.4s ease; /* Плавно всё */
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Магия для заливки кнопки */
+.bet-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s ease;
+    z-index: -1;
+}
+
+.bet-button:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.bet-button:hover {
+    color: #000;
 }
 
 /* =========================================
-   ЛОТЫ (LOTS)
+   4. ЛОТЫ (CARDS)
    ========================================= */
 .lots {
     padding: 180px 50px 120px;
@@ -164,21 +282,22 @@
     font-size: 40px;
     text-transform: uppercase;
     margin-bottom: 27px;
-    margin-left: 40px; /* выравнивание по макету */
+    margin-left: 40px;
 }
 
 .lots__card-list {
     display: flex;
-    flex-wrap: wrap; /* чтобы 4-я карточка переносилась */
+    flex-wrap: wrap;
     gap: 25px;
     list-style: none;
     margin: 0;
     padding: 0;
+    justify-content: center;
 }
 
 .lots__card-list-item {
-    width: 430px; /* ширина карточки */
-    min-height: 450px; /* высота карточки */
+    width: 320px;
+    min-height: 450px;
 }
 
 .card-link {
@@ -188,28 +307,50 @@
 }
 
 .card {
-    position: relative; /* для оверлея внутри */
+    position: relative;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 48px 40px;
+    padding: 40px;
     background-size: cover;
     background-position: center;
     color: #fff;
+    transition: all 0.4s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2); /* Легкая тень в обычном состоянии */
 }
 
-/* ФОНЫ КАРТОЧЕК - ПРОВЕРЬ ИМЕНА ФАЙЛОВ! */
-.card_type_film {
-    background-image: url('./images/card-film.jpg');
+/* Улучшенный эффект карточки */
+.card:hover {
+    transform: translateY(-8px); /* Поднимается выше */
+    box-shadow: 0 20px 30px rgba(0,0,0,0.4); /* Тень становится глубже */
 }
 
-.card_type_book {
-    background-image: url('./images/card-book.jpg');
+/* Зум картинки карточки при наведении */
+.card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: inherit;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.5s ease;
+    z-index: 0;
+    border-radius: inherit;
 }
 
-.card_type_picture {
-    background-image: url('./images/card-picture.jpg');
+.card:hover::before {
+    transform: scale(1.05); /* Картинка внутри чуть увеличивается */
+}
+
+/* Переопределяем фон для псевдоэлемента, чтобы он не перекрывал текст */
+.card_type_film { background-image: url('../images/card-lot-01.jpg'); }
+.card_type_book { background-image: url('../images/card-lot-02.jpg'); }
+.card_type_picture { background-image: url('../images/card-lot-03.jpg'); }
+
+/* Оверлей в карточках тоже должен быть поверх картинки */
+.card .overlay {
+    z-index: 1;
 }
 
 .card__title {
@@ -219,13 +360,14 @@
     font-size: 22px;
     text-decoration: underline;
     text-transform: uppercase;
+    text-underline-offset: 4px;
 }
 
 .card__text {
     position: relative;
     z-index: 2;
     margin: 0;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .lots__look-more-link {
@@ -235,16 +377,22 @@
     font-size: 20px;
     color: #000;
     text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: all 0.3s ease;
+}
+
+.lots__look-more-link:hover {
+    color: #666;
+    letter-spacing: 2px; /* Текст чуть растягивается при наведении */
 }
 
 /* =========================================
-   ОБ АУКЦИОНЕ (ABOUT)
+   5. ОБ АУКЦИОНЕ (ABOUT)
    ========================================= */
 .about {
     padding: 120px 50px 180px;
     display: grid;
-    /* Левая колонка фиксированная (как карточка), правая - все остальное */
-    grid-template-columns: 430px 1fr;
+    grid-template-columns: 320px 1fr;
     gap: 70px;
 }
 
@@ -257,11 +405,16 @@
     width: 240px;
     height: 240px;
     background-color: #000;
-    border-radius: 50%; /* делаем круг */
+    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 auto; /* центрируем круг в колонке */
+    margin: 0 auto;
+    transition: transform 0.4s ease; /* Круглый логотип будет крутиться */
+}
+
+.about__logo:hover {
+    transform: rotate(10deg) scale(1.05); /* Поворачивается при наведении */
 }
 
 .about__logo-image {
@@ -273,13 +426,13 @@
     font-size: 40px;
     text-transform: uppercase;
     margin-top: 0;
-    margin-bottom: 100px;
+    margin-bottom: 80px;
 }
 
 .about__text {
     display: flex;
     flex-direction: column;
-    gap: 24px; /* отступ между абзацами */
+    gap: 24px;
     font-size: 20px;
     line-height: 1.2;
 }
@@ -289,13 +442,13 @@
 }
 
 /* =========================================
-   ПОДВАЛ (FOOTER)
+   6. ПОДВАЛ (FOOTER)
    ========================================= */
 .footer {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     padding: 50px;
-    border-top: 1px solid #000; /* Если в макете есть линия */
+    border-top: 1px solid #000;
 }
 
 .footer__menu {
@@ -316,6 +469,12 @@
     font-size: 18px;
     color: #000;
     text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: color 0.2s;
+}
+
+.footer__menu-link:hover {
+    color: #666;
 }
 
 .footer__menu-link_active {
@@ -329,6 +488,15 @@
     list-style: none;
     margin: 0;
     padding: 0;
+}
+
+.footer__social-link {
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.footer__social-link:hover {
+    transform: translateY(-3px); /* Иконки подпрыгивают */
 }
 
 .footer__social-icon {
