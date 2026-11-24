@@ -1,12 +1,10 @@
-/* =========================================
-   1. БАЗОВЫЕ НАСТРОЙКИ И СБРОС
-   ========================================= */
+
 html {
     scroll-behavior: smooth;
     background-color: #fff;
 }
 
-/* Кастомный стильный скроллбар */
+
 ::-webkit-scrollbar {
     width: 8px;
 }
@@ -21,7 +19,7 @@ html {
     background: #555;
 }
 
-/* Красивое выделение текста мышкой */
+
 ::selection {
     background: #000;
     color: #fff;
@@ -47,9 +45,7 @@ body {
     outline: none;
 }
 
-/* =========================================
-   2. ШАПКА (HEADER)
-   ========================================= */
+
 .header {
     display: grid;
     grid-template-columns: 1fr min-content 1fr;
@@ -99,7 +95,7 @@ body {
 .header__logo {
     display: block;
     margin: 0 auto;
-    transition: transform 0.3s ease; /* Логотип тоже будет реагировать */
+    transition: transform 0.3s ease;
 }
 
 .header__logo:hover {
@@ -142,9 +138,7 @@ body {
     margin-top: 5px;
 }
 
-/* =========================================
-   3. ОБЛОЖКА (COVER)
-   ========================================= */
+
 .cover {
     position: relative;
     background-image: url('../images/cover.jpg');
@@ -155,7 +149,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    overflow: hidden; /* Чтобы анимация не вылезала за края */
+    overflow: hidden;
 }
 
 .overlay {
@@ -177,11 +171,11 @@ body {
     line-height: 0.95;
     letter-spacing: 0.3em;
     color: #fff;
-    /* Анимация появления */
+
     animation: slideUpFade 1s ease-out forwards;
 }
 
-/* Ключевые кадры для анимации заголовка */
+
 @keyframes slideUpFade {
     from {
         opacity: 0;
@@ -229,7 +223,7 @@ body {
     color: #fff;
 }
 
-/* Кнопка (с плавной заливкой) */
+
 .bet-button {
     display: inline-block;
     background-color: transparent;
@@ -241,13 +235,13 @@ body {
     cursor: pointer;
     font-family: inherit;
     text-decoration: none;
-    transition: all 0.4s ease; /* Плавно всё */
+    transition: all 0.4s ease;
     position: relative;
     overflow: hidden;
     z-index: 1;
 }
 
-/* Магия для заливки кнопки */
+
 .bet-button::before {
     content: '';
     position: absolute;
@@ -271,9 +265,7 @@ body {
     color: #000;
 }
 
-/* =========================================
-   4. ЛОТЫ (CARDS)
-   ========================================= */
+
 .lots {
     padding: 180px 50px 120px;
 }
@@ -317,16 +309,16 @@ body {
     background-position: center;
     color: #fff;
     transition: all 0.4s ease;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2); /* Легкая тень в обычном состоянии */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
-/* Улучшенный эффект карточки */
+
 .card:hover {
-    transform: translateY(-8px); /* Поднимается выше */
-    box-shadow: 0 20px 30px rgba(0,0,0,0.4); /* Тень становится глубже */
+    transform: translateY(-8px);
+    box-shadow: 0 20px 30px rgba(0,0,0,0.4);
 }
 
-/* Зум картинки карточки при наведении */
+
 .card::before {
     content: "";
     position: absolute;
@@ -340,15 +332,15 @@ body {
 }
 
 .card:hover::before {
-    transform: scale(1.05); /* Картинка внутри чуть увеличивается */
+    transform: scale(1.05);
 }
 
-/* Переопределяем фон для псевдоэлемента, чтобы он не перекрывал текст */
+
 .card_type_film { background-image: url('../images/card-lot-01.jpg'); }
 .card_type_book { background-image: url('../images/card-lot-02.jpg'); }
 .card_type_picture { background-image: url('../images/card-lot-03.jpg'); }
 
-/* Оверлей в карточках тоже должен быть поверх картинки */
+
 .card .overlay {
     z-index: 1;
 }
@@ -383,12 +375,10 @@ body {
 
 .lots__look-more-link:hover {
     color: #666;
-    letter-spacing: 2px; /* Текст чуть растягивается при наведении */
+    letter-spacing: 2px;
 }
 
-/* =========================================
-   5. ОБ АУКЦИОНЕ (ABOUT)
-   ========================================= */
+
 .about {
     padding: 120px 50px 180px;
     display: grid;
@@ -410,11 +400,11 @@ body {
     justify-content: center;
     align-items: center;
     margin: 0 auto;
-    transition: transform 0.4s ease; /* Круглый логотип будет крутиться */
+    transition: transform 0.4s ease;
 }
 
 .about__logo:hover {
-    transform: rotate(10deg) scale(1.05); /* Поворачивается при наведении */
+    transform: rotate(10deg) scale(1.05);
 }
 
 .about__logo-image {
@@ -441,9 +431,7 @@ body {
     margin: 0;
 }
 
-/* =========================================
-   6. ПОДВАЛ (FOOTER)
-   ========================================= */
+
 .footer {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -496,7 +484,7 @@ body {
 }
 
 .footer__social-link:hover {
-    transform: translateY(-3px); /* Иконки подпрыгивают */
+    transform: translateY(-3px);
 }
 
 .footer__social-icon {
